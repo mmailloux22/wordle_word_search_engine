@@ -29,7 +29,6 @@ def wordle_search(wordlelist) -> None:
                     search_term = search_term + '*' +'[^' + excluded_letters + ']'
                     
                 matches = [i for i in wordlelist if re.match(search_term, i, flags=re.IGNORECASE)]
-                print(search_term.split('*')[0])
                 if len(matches) == 0 and len(search_term.split('*')[0]) <= 5:
                     print('There are no matches for your search term.')
 
