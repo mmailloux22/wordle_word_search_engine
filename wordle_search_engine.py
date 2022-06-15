@@ -14,17 +14,24 @@ def wordle_search(wordlelist) -> None:
 
         while len(matches) == 0:
             
-            search_term = input("Enter your search term: ")
+            search_term = input('Enter your search term: ')
             
             if search_term == '':
                 exit()
-            if len(search_term) > 5:
-                print("Your search term MUST be 5 characters or less!")
-            
-            matches = [i for i in wordlelist if re.match(search_term, i, flags=re.IGNORECASE)]
-            if len(matches) == 0 and len(search_term) <= 5:
-                print('There are no matches for your search term.')
 
+            if len(search_term) > 5:
+                print('Your search term MUST be 5 characters or less!')
+
+            else:    
+                excluded_letters = input('Enter new excluded letters: ')
+
+                if excluded_letters.isalpha():
+                    search_term = search_term + '*' +'[^' + excluded_letters + ']'
+                    
+                matches = [i for i in wordlelist if re.match(search_term, i, flags=re.IGNORECASE)]
+                print(search_term)
+                if len(matches) == 0 and len(search_term.split('[')[0]) <= 5:
+                    print('There are no matches for your search term.')
 
         print('\nResults:')
         for match in matches:
