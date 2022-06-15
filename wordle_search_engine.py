@@ -46,6 +46,7 @@ def wordle_search(wordlelist) -> None:
                     print('There are no matches for your search term.')
 
         print('\nResults:')
+        matches = sorted(matches)
         for match in matches:
             print(match)
         
